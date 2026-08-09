@@ -1,0 +1,27 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Västtrafik",
+        "description": "Ange dina API-uppgifter.",
+        "data": {
+          "client_id": "Client ID",
+          "client_secret": "Client secret"
+        }
+      },
+      "route": {
+        "title": "Linje",
+        "description": "Ange information om linjen.",
+        "data": {
+          "name": "Namn",
+          "origin": "Från",
+          "towards": "Mot"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Felaktiga API-uppgifter.",
+      "cannot_connect": "Det gick inte att ansluta till Västtrafik."
+    }
+  }
+}
