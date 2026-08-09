@@ -7,7 +7,6 @@ from typing import Any
 import voluptuous as vol
 
 from homeassistant import config_entries
-from homeassistant.const import CONF_NAME
 from homeassistant.data_entry_flow import FlowResult
 
 from pyvasttrafik import VasttrafikClient
@@ -20,8 +19,6 @@ from pyvasttrafik.exceptions import (
 from .const import (
     CONF_CLIENT_ID,
     CONF_CLIENT_SECRET,
-    CONF_ORIGIN,
-    CONF_TOWARDS,
     DOMAIN,
 )
 
@@ -65,10 +62,13 @@ class VasttrafikConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 errors["base"] = "cannot_connect"
 
             else:
-                self._client_id = client_id
-                self._client_secret = client_secret
-
-                return await self.async_step_route()
+                return self.async_create_entry(
+                    title="Västtrafik",
+                    data={
+                        CONF_CLIENT_ID: client_id,
+                        CONF_CLIENT_SECRET: client_secret,
+                    },
+                )
 
         return self.async_show_form(
             step_id="user",
@@ -79,36 +79,4 @@ class VasttrafikConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 }
             ),
             errors=errors,
-        )
-
-    async def async_step_route(
-        self,
-        user_input: dict[str, Any] | None = None,
-    ) -> FlowResult:
-        """Configure the route."""
-
-        if user_input is not None:
-            return self.async_create_entry(
-                title=user_input[CONF_NAME],
-                data={
-                    CONF_CLIENT_ID: self._client_id,
-                    CONF_CLIENT_SECRET: self._client_secret,
-                    CONF_NAME: user_input[CONF_NAME],
-                    CONF_ORIGIN: user_input[CONF_ORIGIN],
-                    CONF_TOWARDS: user_input[CONF_TOWARDS],
-                },
-            )
-
-        return self.async_show_form(
-            step_id="route",
-            data_schema=vol.Schema(
-                {
-                    vol.Required(
-                        CONF_NAME,
-                        default="Västtrafik",
-                    ): str,
-                    vol.Required(CONF_ORIGIN): str,
-                    vol.Required(CONF_TOWARDS): str,
-                }
-            ),
         )
