@@ -7,8 +7,22 @@
         "data": {
           "client_id": "Client ID",
           "client_secret": "Client secret"
+        },
+        "origin_search": {
+        "title": "Från",
+        "description": "Sök efter hållplatsen som resan ska starta från.",
+        "data": {
+            "search": "Sök"
         }
-      },
+        },
+        "origin_select": {
+        "title": "Välj hållplats",
+        "description": "Välj hållplats i listan.",
+        "data": {
+            "origin": "Hållplats"
+        }
+        }
+    },
       "route": {
         "title": "Linje",
         "description": "Ange information om linjen.",
@@ -21,7 +35,8 @@
     },
     "error": {
       "invalid_auth": "Felaktiga API-uppgifter.",
-      "cannot_connect": "Det gick inte att ansluta till Västtrafik."
+      "cannot_connect": "Det gick inte att ansluta till Västtrafik.",
+      "no_stops_found": "Inga hållplatser hittades."
     }
   }
 }

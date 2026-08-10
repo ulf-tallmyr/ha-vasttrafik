@@ -8,7 +8,8 @@ import voluptuous as vol
 
 from homeassistant import config_entries
 from homeassistant.data_entry_flow import FlowResult
-
+from homeassistant.core import callback
+from .subentry_flow import RouteSubentryFlowHandler
 from pyvasttrafik import VasttrafikClient
 from pyvasttrafik.exceptions import (
     VasttrafikAuthenticationError,
@@ -27,6 +28,17 @@ class VasttrafikConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow."""
 
     VERSION = 1
+
+    @classmethod
+    @callback
+    def async_get_supported_subentry_types(
+        cls,
+        config_entry: config_entries.ConfigEntry,
+    ) -> dict[str, type[config_entries.ConfigSubentryFlow]]:
+        """Return supported subentry types."""
+        return {
+            "route": RouteSubentryFlowHandler,
+        }
 
     def __init__(self) -> None:
         """Initialize the config flow."""

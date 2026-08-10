@@ -1,0 +1,66 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Västtrafik",
+        "description": "To use this integration, you need your own account in the Västtrafik developer portal and access to Planera Resa API v4. Enter the Client ID and Client secret for your application.",
+        "data": {
+          "client_id": "Client ID",
+          "client_secret": "Client secret"
+        },
+        "data_description": {
+          "client_id": "Client ID from your application in the Västtrafik developer portal.",
+          "client_secret": "Client secret from the same application. It is stored in Home Assistant and used to authenticate with the Västtrafik API."
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "The API credentials could not be verified.",
+      "cannot_connect": "Could not connect to Västtrafik."
+    }
+  },
+  "config_subentries": {
+    "route": {
+      "title": "Route",
+      "step": {
+        "origin_search": {
+          "title": "Origin stop",
+          "description": "Search for the stop where the journey begins.",
+          "data": {
+            "search": "Search"
+          },
+          "data_description": {
+            "search": "Enter part of a stop name, for example Sjöbo or Norra Sjöbogatan."
+          }
+        },
+        "origin_select": {
+          "title": "Select origin stop",
+          "description": "Select the correct stop from the search results.",
+          "data": {
+            "origin": "Stop"
+          }
+        },
+        "destination_search": {
+        "title": "Destination stop",
+        "description": "Search for the stop where the journey ends.",
+        "data": {
+            "search": "Search"
+        },
+        "data_description": {
+            "search": "Enter part of a stop name."
+        }
+        },
+        "destination_select": {
+        "title": "Select destination stop",
+        "description": "Select the correct stop from the search results.",
+        "data": {
+            "towards": "Stop"
+        }
+        }
+            },
+      "error": {
+        "no_stops_found": "No stops were found. Try another search."
+      }
+    }
+  }
+}
