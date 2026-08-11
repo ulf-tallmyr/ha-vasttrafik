@@ -1,12 +1,16 @@
 {
   "domain": "vasttrafik_departures",
   "name": "Västtrafik Departures",
+  "version": "0.1.1",
   "config_flow": true,
   "integration_type": "service",
   "iot_class": "cloud_polling",
-  "requirements": ["pyvasttrafik==0.1.1"],
-  "version": "0.1.1",
+  "requirements": [
+    "pyvasttrafik==0.1.1"
+  ],
   "codeowners": [
     "@ulf-tallmyr"
-  ]
+  ],
+  "documentation": "https://github.com/ulf-tallmyr/ha-vasttrafik",
+  "issue_tracker": "https://github.com/ulf-tallmyr/ha-vasttrafik/issues"
 }
