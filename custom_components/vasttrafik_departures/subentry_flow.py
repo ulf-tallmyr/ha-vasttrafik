@@ -18,7 +18,9 @@ from pyvasttrafik import VasttrafikClient
 from .const import (
     CONF_CLIENT_ID,
     CONF_CLIENT_SECRET,
+    CONF_DESTINATION_NAME,
     CONF_ORIGIN,
+    CONF_ORIGIN_NAME,
     CONF_TOWARDS,
 )
 
@@ -175,7 +177,9 @@ class RouteSubentryFlowHandler(ConfigSubentryFlow):
                 title=f"{self._origin_name} → {self._destination_name}",
                 data={
                     CONF_ORIGIN: self._origin_gid,
+                    CONF_ORIGIN_NAME: self._origin_name,
                     CONF_TOWARDS: self._destination_gid,
+                    CONF_DESTINATION_NAME: self._destination_name,
                 },
             )
 

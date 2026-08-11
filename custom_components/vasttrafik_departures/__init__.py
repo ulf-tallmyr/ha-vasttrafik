@@ -5,9 +5,16 @@ from __future__ import annotations
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-from .const import DOMAIN
+from .const import (
+    CONF_DESTINATION_NAME,
+    CONF_ORIGIN,
+    CONF_ORIGIN_NAME,
+    CONF_TOWARDS,
+    DOMAIN,
+)
+from .coordinator import VasttrafikRouteCoordinator
 
-PLATFORMS = ["sensor"]
+PLATFORMS = ["sensor", "binary_sensor"]
 
 
 async def async_setup(
@@ -29,6 +36,38 @@ async def async_setup_entry(
     hass.data[DOMAIN][entry.entry_id] = {
         "coordinators": {},
     }
+
+    for subentry in entry.subentries.values():
+        if subentry.subentry_type != "route":
+            continue
+
+        origin_name = subentry.data.get(CONF_ORIGIN_NAME)
+        destination_name = subentry.data.get(CONF_DESTINATION_NAME)
+
+        if (
+            (origin_name is None or destination_name is None)
+            and "→" in subentry.title
+        ):
+            title_origin, title_destination = (
+                part.strip() for part in subentry.title.split("→", 1)
+            )
+            origin_name = origin_name or title_origin
+            destination_name = destination_name or title_destination
+
+        coordinator = VasttrafikRouteCoordinator(
+            hass,
+            entry,
+            origin_gid=subentry.data[CONF_ORIGIN],
+            destination_gid=subentry.data[CONF_TOWARDS],
+            origin_name=origin_name,
+            destination_name=destination_name,
+        )
+
+        await coordinator.async_config_entry_first_refresh()
+
+        hass.data[DOMAIN][entry.entry_id]["coordinators"][
+            subentry.subentry_id
+        ] = coordinator
 
     await hass.config_entries.async_forward_entry_setups(
         entry,

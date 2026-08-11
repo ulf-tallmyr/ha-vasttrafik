@@ -39,6 +39,8 @@ class VasttrafikRouteCoordinator(DataUpdateCoordinator):
         *,
         origin_gid: str,
         destination_gid: str,
+        origin_name: str | None = None,
+        destination_name: str | None = None,
     ) -> None:
         """Initialize the coordinator."""
 
@@ -49,6 +51,8 @@ class VasttrafikRouteCoordinator(DataUpdateCoordinator):
 
         self._origin_gid = origin_gid
         self._destination_gid = destination_gid
+        self.origin_name = origin_name
+        self.destination_name = destination_name
 
         super().__init__(
             hass,

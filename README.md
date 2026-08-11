@@ -1,5 +1,15 @@
 # Västtrafik Departures
 
+[![Open your Home Assistant instance and open this repository in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ulf-tallmyr&repository=ha-vasttrafik&category=integration)
+
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
+
+[![GitHub Release](https://img.shields.io/github/v/release/ulf-tallmyr/ha-vasttrafik)](https://github.com/ulf-tallmyr/ha-vasttrafik/releases)
+
+[![PyPI version](https://img.shields.io/pypi/v/pyvasttrafik.svg)](https://pypi.org/project/pyvasttrafik/)
+
+[![Validate](https://github.com/ulf-tallmyr/ha-vasttrafik/actions/workflows/validate.yml/badge.svg)](https://github.com/ulf-tallmyr/ha-vasttrafik/actions/workflows/validate.yml)
+
 A Home Assistant integration for Västtrafik departures.
 
 ## Features

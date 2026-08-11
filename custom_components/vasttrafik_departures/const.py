@@ -14,5 +14,8 @@ CONF_TOWARDS = "towards"
 CONF_DEPARTURES = "departures"
 CONF_UPDATE_INTERVAL = "update_interval"
 
+CONF_ORIGIN_NAME = "origin_name"
+CONF_DESTINATION_NAME = "destination_name"
+
 CONF_CLIENT_ID = "client_id"
 CONF_CLIENT_SECRET = "client_secret"
