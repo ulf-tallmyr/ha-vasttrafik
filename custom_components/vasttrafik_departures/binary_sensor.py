@@ -14,8 +14,13 @@ from .coordinator import VasttrafikRouteCoordinator
 from .entity import VasttrafikEntityMixin
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback) -> None:
+async def async_setup_entry(
+    hass: HomeAssistant,
+    entry: ConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback,
+) -> None:
     """Set up Västtrafik binary sensors."""
+
     entities: list[BinarySensorEntity] = []
     device_registry = dr.async_get(hass)
 
@@ -23,7 +28,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
         if subentry.subentry_type != "route":
             continue
 
-        coordinator = hass.data[DOMAIN][entry.entry_id]["coordinators"].get(subentry.subentry_id)
+        coordinator = hass.data[DOMAIN][entry.entry_id]["coordinators"].get(
+            subentry.subentry_id
+        )
         if coordinator is None:
             continue
 
@@ -36,7 +43,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             model="Route",
         )
 
-        entities.append(VasttrafikCancelledBinarySensor(coordinator=coordinator, entry=entry, subentry_id=subentry.subentry_id, device_entry=device_entry))
+        entities.append(
+            VasttrafikCancelledBinarySensor(
+                coordinator=coordinator,
+                entry=entry,
+                subentry_id=subentry.subentry_id,
+                device_entry=device_entry,
+            )
+        )
 
     async_add_entities(entities)
 
@@ -51,12 +65,27 @@ class VasttrafikCancelledBinarySensor(
     _attr_name = "Cancelled"
     _attr_icon = "mdi:cancel"
 
-    def __init__(self, *, coordinator: VasttrafikRouteCoordinator, entry: ConfigEntry, subentry_id: str, device_entry: dr.DeviceEntry) -> None:
+    def __init__(
+        self,
+        *,
+        coordinator: VasttrafikRouteCoordinator,
+        entry: ConfigEntry,
+        subentry_id: str,
+        device_entry: dr.DeviceEntry,
+    ) -> None:
+        """Initialize the cancelled binary sensor."""
+
         super().__init__(coordinator)
-        self._init_vasttrafik_entity(entry=entry, subentry_id=subentry_id, device_entry=device_entry, suffix="cancelled")
+        self._init_vasttrafik_entity(
+            entry=entry,
+            subentry_id=subentry_id,
+            device_entry=device_entry,
+            suffix="cancelled",
+        )
 
     @property
     def is_on(self) -> bool | None:
+        """Return whether the next journey is cancelled."""
         journey = self.next_journey
         if journey is None or not journey.legs:
             return None
