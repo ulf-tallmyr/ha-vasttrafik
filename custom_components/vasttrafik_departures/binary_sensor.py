@@ -21,7 +21,6 @@ async def async_setup_entry(
 ) -> None:
     """Set up Västtrafik binary sensors."""
 
-    entities: list[BinarySensorEntity] = []
     device_registry = dr.async_get(hass)
 
     for subentry in entry.subentries.values():
@@ -38,12 +37,14 @@ async def async_setup_entry(
             config_entry_id=entry.entry_id,
             config_subentry_id=subentry.subentry_id,
             identifiers={(DOMAIN, subentry.subentry_id)},
-            name=subentry.title,
+            name=coordinator.route_name or subentry.title,
             manufacturer="Västtrafik",
             model="Route",
         )
 
-        entities.append(
+        route_entities: list[BinarySensorEntity] = []
+
+        route_entities.append(
             VasttrafikCancelledBinarySensor(
                 coordinator=coordinator,
                 entry=entry,
@@ -52,7 +53,10 @@ async def async_setup_entry(
             )
         )
 
-    async_add_entities(entities)
+        async_add_entities(
+            route_entities,
+            config_subentry_id=subentry.subentry_id,
+        )
 
 
 class VasttrafikCancelledBinarySensor(
@@ -62,7 +66,6 @@ class VasttrafikCancelledBinarySensor(
 ):
     """Represent whether the next journey is cancelled."""
 
-    _attr_name = "Cancelled"
     _attr_icon = "mdi:cancel"
 
     def __init__(
@@ -73,19 +76,17 @@ class VasttrafikCancelledBinarySensor(
         subentry_id: str,
         device_entry: dr.DeviceEntry,
     ) -> None:
-        """Initialize the cancelled binary sensor."""
-
         super().__init__(coordinator)
         self._init_vasttrafik_entity(
             entry=entry,
             subentry_id=subentry_id,
             device_entry=device_entry,
             suffix="cancelled",
+            translation_key="cancelled",
         )
 
     @property
     def is_on(self) -> bool | None:
-        """Return whether the next journey is cancelled."""
         journey = self.next_journey
         if journey is None or not journey.legs:
             return None

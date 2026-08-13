@@ -30,7 +30,7 @@
             "search": "Search"
           },
           "data_description": {
-            "search": "Enter part of a stop name, for example Sjöbo or Norra Sjöbogatan."
+            "search": "Enter part of a stop name."
           }
         },
         "origin_select": {
@@ -41,25 +41,97 @@
           }
         },
         "destination_search": {
-        "title": "Destination stop",
-        "description": "Search for the stop where the journey ends.",
-        "data": {
+          "title": "Destination stop",
+          "description": "Search for the stop where the journey ends.",
+          "data": {
             "search": "Search"
-        },
-        "data_description": {
+          },
+          "data_description": {
             "search": "Enter part of a stop name."
-        }
+          }
         },
         "destination_select": {
-        "title": "Select destination stop",
-        "description": "Select the correct stop from the search results.",
-        "data": {
+          "title": "Select destination stop",
+          "description": "Select the correct stop from the search results.",
+          "data": {
             "towards": "Stop"
+          }
+        },
+        "route_settings": {
+          "title": "Route settings",
+          "description": "Give the route a friendly name and choose how often it should update.",
+          "data": {
+            "route_name": "Route name",
+            "update_interval": "Refresh interval (seconds)"
+          },
+          "data_description": {
+            "route_name": "For example Home → City, Work or Morning commute.",
+            "update_interval": "How often Home Assistant should request new journey data."
+          }
         }
-        }
-            },
+      },
       "error": {
         "no_stops_found": "No stops were found. Try another search."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "from": {
+        "name": "From"
+      },
+      "destination": {
+        "name": "Destination"
+      },
+      "line_destination": {
+        "name": "Line destination"
+      },
+      "travel_duration": {
+        "name": "Travel duration"
+      },
+      "number_of_changes": {
+        "name": "Number of changes"
+      },
+      "line": {
+        "name": "Line"
+      },
+      "platform": {
+        "name": "Platform"
+      },
+      "next_departure": {
+        "name": "Next departure"
+      },
+      "minutes_until": {
+        "name": "Minutes until departure"
+      },
+      "delay": {
+        "name": "Delay"
+      },
+      "departure_board": {
+        "name": "Departure board"
+      },
+      "transport_mode": {
+        "name": "Transport mode",
+        "state": {
+          "bus": "Bus",
+          "tram": "Tram",
+          "train": "Train",
+          "ferry": "Ferry",
+          "taxi": "Taxi"
+        }
+      },
+      "status": {
+        "name": "Status",
+        "state": {
+          "on_time": "On time",
+          "delayed": "Delayed",
+          "cancelled": "Cancelled"
+        }
+      }
+    },
+    "binary_sensor": {
+      "cancelled": {
+        "name": "Cancelled"
       }
     }
   }

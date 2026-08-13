@@ -2,41 +2,137 @@
   "config": {
     "step": {
       "user": {
-        "title": "Västtrafik",
-        "description": "Ange dina API-uppgifter.",
+        "title": "Anslut till Västtrafik",
+        "description": "För att använda integrationen behöver du ett eget konto i Västtrafiks utvecklarportal och åtkomst till Planera Resa API v4. Ange Client ID och Client secret för din applikation.",
         "data": {
           "client_id": "Client ID",
           "client_secret": "Client secret"
         },
-        "origin_search": {
-        "title": "Från",
-        "description": "Sök efter hållplatsen som resan ska starta från.",
-        "data": {
-            "search": "Sök"
-        }
-        },
-        "origin_select": {
-        "title": "Välj hållplats",
-        "description": "Välj hållplats i listan.",
-        "data": {
-            "origin": "Hållplats"
-        }
-        }
-    },
-      "route": {
-        "title": "Linje",
-        "description": "Ange information om linjen.",
-        "data": {
-          "name": "Namn",
-          "origin": "Från",
-          "towards": "Mot"
+        "data_description": {
+          "client_id": "Client ID från din applikation i Västtrafiks utvecklarportal.",
+          "client_secret": "Client secret från samma applikation. Den lagras i Home Assistant och används för autentisering mot Västtrafiks API."
         }
       }
     },
     "error": {
-      "invalid_auth": "Felaktiga API-uppgifter.",
-      "cannot_connect": "Det gick inte att ansluta till Västtrafik.",
-      "no_stops_found": "Inga hållplatser hittades."
+      "invalid_auth": "API-uppgifterna kunde inte verifieras.",
+      "cannot_connect": "Kunde inte ansluta till Västtrafik."
+    }
+  },
+  "config_subentries": {
+    "route": {
+      "title": "Rutt",
+      "step": {
+        "origin_search": {
+          "title": "Starthållplats",
+          "description": "Sök efter hållplatsen där resan börjar.",
+          "data": {
+            "search": "Sök"
+          },
+          "data_description": {
+            "search": "Ange en del av hållplatsens namn."
+          }
+        },
+        "origin_select": {
+          "title": "Välj starthållplats",
+          "description": "Välj rätt hållplats i sökresultatet.",
+          "data": {
+            "origin": "Hållplats"
+          }
+        },
+        "destination_search": {
+          "title": "Destination",
+          "description": "Sök efter hållplatsen där resan slutar.",
+          "data": {
+            "search": "Sök"
+          },
+          "data_description": {
+            "search": "Ange en del av hållplatsens namn."
+          }
+        },
+        "destination_select": {
+          "title": "Välj destination",
+          "description": "Välj rätt hållplats i sökresultatet.",
+          "data": {
+            "towards": "Hållplats"
+          }
+        },
+        "route_settings": {
+          "title": "Ruttinställningar",
+          "description": "Ge rutten ett eget namn och välj hur ofta den ska uppdateras.",
+          "data": {
+            "route_name": "Ruttnamn",
+            "update_interval": "Uppdateringsintervall (sekunder)"
+          },
+          "data_description": {
+            "route_name": "Till exempel Hem → Centrum, Jobbet eller Morgonpendling.",
+            "update_interval": "Hur ofta Home Assistant ska hämta nya resedata."
+          }
+        }
+      },
+      "error": {
+        "no_stops_found": "Inga hållplatser hittades. Prova en annan sökning."
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "from": {
+        "name": "Från"
+      },
+      "destination": {
+        "name": "Destination"
+      },
+      "line_destination": {
+        "name": "Linjedestination"
+      },
+      "travel_duration": {
+        "name": "Restid"
+      },
+      "number_of_changes": {
+        "name": "Antal byten"
+      },
+      "line": {
+        "name": "Linje"
+      },
+      "platform": {
+        "name": "Läge"
+      },
+      "next_departure": {
+        "name": "Nästa avgång"
+      },
+      "minutes_until": {
+        "name": "Minuter till avgång"
+      },
+      "delay": {
+        "name": "Försening"
+      },
+      "departure_board": {
+        "name": "Avgångstavla"
+      },
+      "transport_mode": {
+        "name": "Färdmedel",
+        "state": {
+          "bus": "Buss",
+          "tram": "Spårvagn",
+          "train": "Tåg",
+          "ferry": "Färja",
+          "taxi": "Taxi"
+        }
+      },
+      "status": {
+        "name": "Status",
+        "state": {
+          "on_time": "I tid",
+          "delayed": "Försenad",
+          "cancelled": "Inställd"
+        }
+      }
+    },
+    "binary_sensor": {
+      "cancelled": {
+        "name": "Inställd"
+      }
     }
   }
 }

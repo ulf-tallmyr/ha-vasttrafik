@@ -23,11 +23,13 @@ class VasttrafikEntityMixin:
         subentry_id: str,
         device_entry: dr.DeviceEntry,
         suffix: str,
+        translation_key: str,
     ) -> None:
         """Initialize common entity metadata."""
         self.device_entry = device_entry
         self._attr_unique_id = f"{entry.entry_id}_{subentry_id}_{suffix}"
         self._attr_has_entity_name = True
+        self._attr_translation_key = translation_key
 
     @property
     def next_journey(self):

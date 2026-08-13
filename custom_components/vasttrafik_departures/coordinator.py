@@ -41,6 +41,8 @@ class VasttrafikRouteCoordinator(DataUpdateCoordinator):
         destination_gid: str,
         origin_name: str | None = None,
         destination_name: str | None = None,
+        route_name: str | None = None,
+        update_interval: int = DEFAULT_UPDATE_INTERVAL,
     ) -> None:
         """Initialize the coordinator."""
 
@@ -53,32 +55,29 @@ class VasttrafikRouteCoordinator(DataUpdateCoordinator):
         self._destination_gid = destination_gid
         self.origin_name = origin_name
         self.destination_name = destination_name
+        self.route_name = route_name
+        self.refresh_interval = update_interval
 
         super().__init__(
             hass,
             _LOGGER,
-            name=f"Västtrafik {origin_gid} → {destination_gid}",
+            name=route_name or f"Västtrafik {origin_gid} → {destination_gid}",
             config_entry=config_entry,
-            update_interval=timedelta(
-                seconds=DEFAULT_UPDATE_INTERVAL
-            ),
+            update_interval=timedelta(seconds=update_interval),
         )
 
     async def _async_update_data(self):
         """Fetch upcoming journeys."""
-
         try:
             return await self._client.get_journeys(
                 self._origin_gid,
                 self._destination_gid,
                 limit=DEFAULT_NUMBER_OF_DEPARTURES,
             )
-
         except VasttrafikAuthenticationError as err:
             raise UpdateFailed(
                 "Västtrafik authentication failed"
             ) from err
-
         except (
             VasttrafikConnectionError,
             VasttrafikResponseError,

@@ -7,7 +7,7 @@ from datetime import datetime
 from typing import Any
 
 from .coordinator import VasttrafikRouteCoordinator
-from .icons import transport_mode_name
+from .icons import transport_mode_state
 
 
 def isoformat(value: datetime | None) -> str | None:
@@ -19,19 +19,19 @@ def journey_duration_minutes(journey: Any) -> int | None:
     """Return total journey duration in whole minutes."""
     departure_time = journey.departure_time
     arrival_time = journey.arrival_time
-
     if departure_time is None or arrival_time is None:
         return None
-
-    seconds = (arrival_time - departure_time).total_seconds()
-    return max(0, round(seconds / 60))
+    return max(
+        0,
+        round((arrival_time - departure_time).total_seconds() / 60),
+    )
 
 
 def departure_rows(
     coordinator: VasttrafikRouteCoordinator,
     minutes_until: Callable[[datetime | None], int | None],
 ) -> list[dict[str, Any]]:
-    """Build structured departure rows."""
+    """Build structured departure rows for dashboards."""
     rows: list[dict[str, Any]] = []
 
     for journey in coordinator.data or []:
@@ -40,6 +40,14 @@ def departure_rows(
 
         leg = journey.legs[0]
         departure_time = leg.effective_departure_time
+        delay = leg.delay_minutes or 0
+
+        if leg.cancelled:
+            status = "cancelled"
+        elif delay > 0:
+            status = "delayed"
+        else:
+            status = "on_time"
 
         rows.append(
             {
@@ -55,10 +63,11 @@ def departure_rows(
                 "line": leg.line_designation,
                 "direction": leg.direction,
                 "line_destination": leg.short_direction,
-                "transport_mode": transport_mode_name(leg.transport_mode),
+                "transport_mode": transport_mode_state(leg.transport_mode),
                 "platform": leg.origin.platform if leg.origin else None,
-                "delay_minutes": leg.delay_minutes,
+                "delay_minutes": delay,
                 "cancelled": leg.cancelled,
+                "status": status,
                 "number_of_changes": journey.number_of_changes,
                 "travel_duration": journey_duration_minutes(journey),
             }

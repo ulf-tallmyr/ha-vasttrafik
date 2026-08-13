@@ -3,7 +3,6 @@
 DOMAIN = "vasttrafik_departures"
 
 NAME = "Västtrafik Departures"
-
 DEFAULT_NAME = "Västtrafik"
 
 DEFAULT_UPDATE_INTERVAL = 60
@@ -13,6 +12,7 @@ CONF_ORIGIN = "origin"
 CONF_TOWARDS = "towards"
 CONF_DEPARTURES = "departures"
 CONF_UPDATE_INTERVAL = "update_interval"
+CONF_ROUTE_NAME = "route_name"
 
 CONF_ORIGIN_NAME = "origin_name"
 CONF_DESTINATION_NAME = "destination_name"
