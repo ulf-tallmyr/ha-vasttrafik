@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0D171F"/>
+    <stop offset="1" stop-color="#122936"/>
+  </linearGradient>
+  <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F7FBFF"/>
+    <stop offset="1" stop-color="#D8EAF5"/>
+  </linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0A3A63"/>
+    <stop offset="1" stop-color="#0286D7"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#03A9F4"/>
+    <stop offset="1" stop-color="#0077C8"/>
+  </linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#001523" flood-opacity="0.28"/>
+  </filter>
+</defs>
+
+<!-- rounded app tile -->
+<rect x="5" y="5" width="246" height="246" rx="42" fill="url(#bg)" stroke="#10B8FF" stroke-opacity="0.18"/>
+
+<!-- bus, intentionally large -->
+<g filter="url(#shadow)">
+  <!-- mirrors -->
+  <rect x="19" y="83" width="17" height="48" rx="7" fill="#10B8FF"/>
+  <rect x="220" y="83" width="17" height="48" rx="7" fill="#10B8FF"/>
+  <rect x="23" y="90" width="8" height="31" rx="4" fill="#0B3154" opacity="0.95"/>
+  <rect x="225" y="90" width="8" height="31" rx="4" fill="#0B3154" opacity="0.95"/>
+
+  <!-- body -->
+  <path d="M52 31
+           Q128 15 204 31
+           Q218 35 221 52
+           L228 190
+           Q229 211 208 218
+           L48 218
+           Q27 211 28 190
+           L35 52
+           Q38 35 52 31Z"
+        fill="url(#body)" stroke="#10B8FF" stroke-width="6" stroke-linejoin="round"/>
+
+  <!-- destination panel -->
+  <rect x="86" y="34" width="84" height="15" rx="7" fill="#0B3154" opacity="0.96"/>
+
+  <!-- windshield -->
+  <path d="M55 59 Q128 48 201 59 L206 128 Q128 139 50 128Z"
+        fill="url(#glass)" stroke="#10B8FF" stroke-width="4"/>
+  <path d="M61 65 Q128 57 195 65 L198 118 Q128 126 58 118Z"
+        fill="#149FE8" opacity="0.28"/>
+  <path d="M63 66 L112 59 L77 120 L58 117Z" fill="#9DE8FF" opacity="0.22"/>
+  <path d="M118 58 L145 56 L106 126 L82 129Z" fill="#FFFFFF" opacity="0.12"/>
+
+  <!-- wiper -->
+  <path d="M118 121 Q149 109 178 119" fill="none" stroke="#0B3154" stroke-width="4" stroke-linecap="round"/>
+  <path d="M148 118 L169 103" fill="none" stroke="#0B3154" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- blue lower fascia -->
+  <path d="M40 146 Q128 132 216 146 L213 191
+           Q128 208 43 191Z" fill="url(#blue)"/>
+
+  <!-- white V-shape fascia -->
+  <path d="M48 145 L87 168 L128 190 L169 168 L208 145
+           L198 178 L159 196 L128 211 L97 196 L58 178Z"
+        fill="#FFFFFF" opacity="0.98"/>
+
+  <!-- lights -->
+  <path d="M48 160 Q67 151 85 158 L76 177 Q57 180 45 170Z" fill="#E9FBFF" stroke="#BDEEFF" stroke-width="2"/>
+  <path d="M208 160 Q189 151 171 158 L180 177 Q199 180 211 170Z" fill="#E9FBFF" stroke="#BDEEFF" stroke-width="2"/>
+  <circle cx="61" cy="167" r="6" fill="#FFFFFF"/>
+  <circle cx="195" cy="167" r="6" fill="#FFFFFF"/>
+
+  <!-- custom neutral map-pin mark, not Västtrafik trademark -->
+  <circle cx="128" cy="183" r="18" fill="#03A9F4" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M128 171
+           c-6.2 0-11 4.6-11 10.5
+           0 8.1 11 17.1 11 17.1
+           s11-9 11-17.1
+           c0-5.9-4.8-10.5-11-10.5Z"
+        fill="#FFFFFF"/>
+  <circle cx="128" cy="181.5" r="4.2" fill="#03A9F4"/>
+
+  <!-- wheels -->
+  <rect x="51" y="207" width="29" height="28" rx="9" fill="#0B3154"/>
+  <rect x="176" y="207" width="29" height="28" rx="9" fill="#0B3154"/>
+  <rect x="55" y="210" width="21" height="18" rx="7" fill="#1D4A68"/>
+  <rect x="180" y="210" width="21" height="18" rx="7" fill="#1D4A68"/>
+</g>
+</svg>

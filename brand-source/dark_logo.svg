@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="256" viewBox="0 0 1024 256">
+<defs>
+  <linearGradient id="lb" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#03A9F4"/>
+    <stop offset="1" stop-color="#0077C8"/>
+  </linearGradient>
+  <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0A3A63"/>
+    <stop offset="1" stop-color="#04A5F2"/>
+  </linearGradient>
+  <filter id="s"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-opacity="0.25"/></filter>
+</defs>
+<rect width="1024" height="256" fill="#0D171F" fill-opacity="0"/>
+<g transform="translate(20 18) scale(0.86)" filter="url(#s)">
+  <rect x="16" y="75" width="15" height="46" rx="6" fill="#0789D1"/>
+  <rect x="225" y="75" width="15" height="46" rx="6" fill="#0789D1"/>
+  <path d="M52 28 Q128 14 204 28 Q217 32 220 49 L226 188 Q227 207 208 214 L48 214 Q29 207 30 188 L36 49 Q39 32 52 28Z"
+        fill="#F8FCFF" stroke="#0789D1" stroke-width="6"/>
+  <rect x="87" y="32" width="82" height="14" rx="7" fill="#0B3154"/>
+  <path d="M55 57 Q128 47 201 57 L205 127 Q128 137 51 127Z" fill="url(#lg)" stroke="#0789D1" stroke-width="4"/>
+  <path d="M40 145 Q128 132 216 145 L212 190 Q128 205 44 190Z" fill="url(#lb)"/>
+  <path d="M49 145 L89 168 L128 189 L167 168 L207 145 L198 176 L159 195 L128 209 L97 195 L58 176Z" fill="#FFFFFF"/>
+  <path d="M48 159 Q67 151 84 157 L76 175 Q57 179 45 169Z" fill="#E9FBFF"/>
+  <path d="M208 159 Q189 151 172 157 L180 175 Q199 179 211 169Z" fill="#E9FBFF"/>
+  <circle cx="128" cy="181" r="17" fill="#03A9F4" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M128 170 c-6 0-10.5 4.4-10.5 10.1 0 7.8 10.5 16.5 10.5 16.5s10.5-8.7 10.5-16.5c0-5.7-4.5-10.1-10.5-10.1Z" fill="#FFFFFF"/>
+  <circle cx="128" cy="180" r="4" fill="#03A9F4"/>
+  <rect x="51" y="204" width="29" height="27" rx="8" fill="#0B3154"/>
+  <rect x="176" y="204" width="29" height="27" rx="8" fill="#0B3154"/>
+</g>
+<line x1="255" y1="55" x2="255" y2="202" stroke="#19B7FF" stroke-opacity="0.22" stroke-width="2"/>
+<text x="292" y="118" font-family="DejaVu Sans, Arial, sans-serif" font-size="68" font-weight="700" fill="#FFFFFF">Västtrafik</text>
+<text x="292" y="191" font-family="DejaVu Sans, Arial, sans-serif" font-size="64" font-weight="700" fill="#19B7FF">Departures</text>
+</svg>
