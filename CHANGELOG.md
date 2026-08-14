@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-08-14
+
+### Changed
+
+- Added Hassfest validation for Home Assistant compatibility checks.
+- Added Sweden (`SE`) as the HACS country metadata in preparation for inclusion in the HACS default repository.
+
 ## [1.0.0] - 2026-08-14
 
 ### Added
