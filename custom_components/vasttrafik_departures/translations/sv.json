@@ -21,6 +21,10 @@
   },
   "config_subentries": {
     "route": {
+      "entry_type": "Rutt",
+      "initiate_flow": {
+        "user": "Lägg till rutt"
+      },
       "title": "Rutt",
       "step": {
         "origin_search": {
